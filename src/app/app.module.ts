@@ -7,10 +7,10 @@ import { InputFieldComponent } from './input-field/input-field.component';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
     declarations: [AppComponent, InputFieldComponent, SingleTodoComponent, TodoListComponent],
-    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, DragDropModule],
+    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, DragDropModule, MatIconModule],
     providers: [],
     bootstrap: [AppComponent],
 })
