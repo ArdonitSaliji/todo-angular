@@ -14,17 +14,23 @@ export class TodoService {
 
         {
             id: 5,
-            todo: 'Wash the dishes',
+            todo: 'Wash the dishe',
             isDone: false,
         },
+        {
+            id: 5,
+            todo: 'Wash dishes',
+            isDone: false,
+        },
+    ];
+
+    completedTodos: Todo[] = [
         {
             id: 5,
             todo: 'Wash the dishes',
             isDone: false,
         },
     ];
-
-    completedTodos: Todo[] = [];
 
     addTodo(newTodo: Todo) {
         this.todos.push(newTodo);

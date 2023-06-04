@@ -2,6 +2,8 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Todo } from 'src/models/Todo';
 import { TodoService } from '../services/TodoService';
+import { NgFor } from '@angular/common';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-todo-list',
@@ -17,6 +19,19 @@ export class TodoListComponent implements OnInit {
 
     get completedTodos(): Todo[] {
         return this.todoService.completedTodos;
+    }
+
+    drop(event: CdkDragDrop<any[]>) {
+        if (event.previousContainer === event.container) {
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        } else {
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex
+            );
+        }
     }
 
     ngOnInit(): void {}

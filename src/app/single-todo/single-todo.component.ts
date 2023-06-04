@@ -8,7 +8,6 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
     templateUrl: './single-todo.component.html',
     styleUrls: ['../app.component.css'],
 })
-export class SingleTodoComponent extends TodoListComponent {
-    @Input() cTodos!: Todo[];
+export class SingleTodoComponent {
     @Input() Todos!: Todo[];
 }
