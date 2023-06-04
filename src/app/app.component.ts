@@ -7,7 +7,7 @@ import { Todo } from 'src/models/Todo';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-    title = '101ang';
+    title = 'Todo App Angular';
 
     ngOnInit(): void {}
 }

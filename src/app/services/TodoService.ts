@@ -5,20 +5,20 @@ import { Todo } from 'src/models/Todo';
     providedIn: 'root',
 })
 export class TodoService {
-    todos: Todo[] = [
+    todo: Todo[] = [
         {
-            id: 5,
+            id: 1,
             todo: 'Wash the dishes',
             isDone: false,
         },
 
         {
-            id: 5,
+            id: 2,
             todo: 'Wash the dishe',
             isDone: false,
         },
         {
-            id: 5,
+            id: 3,
             todo: 'Wash dishes',
             isDone: false,
         },
@@ -26,13 +26,18 @@ export class TodoService {
 
     completedTodos: Todo[] = [
         {
-            id: 5,
+            id: 4,
             todo: 'Wash the dishes',
             isDone: false,
         },
     ];
 
     addTodo(newTodo: Todo) {
-        this.todos.push(newTodo);
+        this.todo.push(newTodo);
+    }
+
+    deleteTodo(todoId: number) {
+        this.todo = this.todo.filter((element) => element.id !== todoId);
+        this.completedTodos = this.completedTodos.filter((element) => element.id !== todoId);
     }
 }

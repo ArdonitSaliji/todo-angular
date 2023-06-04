@@ -1,8 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Todo } from 'src/models/Todo';
 import { TodoService } from '../services/TodoService';
-import { NgFor } from '@angular/common';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -14,7 +12,7 @@ export class TodoListComponent implements OnInit {
     constructor(private todoService: TodoService) {}
 
     get todos(): Todo[] {
-        return this.todoService.todos;
+        return this.todoService.todo;
     }
 
     get completedTodos(): Todo[] {

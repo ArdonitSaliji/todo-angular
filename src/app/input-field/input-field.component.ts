@@ -16,7 +16,7 @@ export class InputFieldComponent {
 
     addTodo(event: any) {
         const newTodo: Todo = {
-            id: this.todoService.todos.length + 1,
+            id: this.todoService.todo.length + 1,
             todo: this.inputValue.value || '',
             isDone: false,
         };
