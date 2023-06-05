@@ -121,7 +121,7 @@ app-root {
     border-radius: 5px;
     padding: 20px;
     margin-top: 15px;
-    background-image: url('assets/bg.avif');
+    background-image: url('./assets/bg.webp');
     transition: 0.2s;
 }
 

@@ -9,16 +9,22 @@ import { TodoService } from '../services/TodoService';
     templateUrl: './input-field.component.html',
     styleUrls: ['./input-field.component.css'],
 })
+
 export class InputFieldComponent {
     inputValue = new FormControl('');
 
     constructor(private todoService: TodoService) {}
-
+   
     addTodo(event: any) {
-        const newTodo: Todo = {
-            id: this.todoService.todo.length + 1,
-            todo: this.inputValue.value || '',
+        if (!this.inputValue.value) {
+            return
+        }
+        const newTodo: Todo = { 
+            id: this.todoService.todo.length + 2,
+            todo: this.inputValue.value ,
             isDone: false,
+            edit: false
+
         };
 
         event.preventDefault();

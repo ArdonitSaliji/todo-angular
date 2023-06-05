@@ -3,11 +3,22 @@
 
     <!-- <s class="todos__single--text"></s> -->
 
-    <span class="todos__single--text">{{ todo.todo }}</span>
+  
+        <input *ngIf="todo.edit "
+          class="todos__single--text"
+          value="{{todo.todo}}"
+          [(ngModel)]="todo.todo"
+          name="todo {{todo.id}}"
+          />
+
+        <s *ngIf="todo.isDone" class="todos__single--text">{{todo.todo}}</s>
+
+
+    <span *ngIf="!todo.edit && !todo.isDone" class="todos__single--text">{{ todo.todo }}</span>
 
     <div>
-        <span class="icon"> <mat-icon>done</mat-icon></span>
-        <span class="icon"> <mat-icon>edit</mat-icon> </span>
+        <span (click)="checkTodo(todo.id)" class="icon"> <mat-icon>done</mat-icon></span>
+        <span (click)="editTodo(todo.id)" class="icon"> <mat-icon>edit</mat-icon> </span>
         <span class="icon"
             ><mat-icon
                 (click)="deleteTodo(todo.id)"

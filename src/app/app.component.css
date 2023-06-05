@@ -1,0 +1,21 @@
+header {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+header button {
+    width: 7rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+header span {
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
