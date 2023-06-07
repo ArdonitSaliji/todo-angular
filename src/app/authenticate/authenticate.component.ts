@@ -22,7 +22,7 @@ export class AuthenticateComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  loginWithGoogle(email?: string, password?: string) {
+  loginWithGoogle() {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
