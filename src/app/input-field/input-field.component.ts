@@ -5,31 +5,29 @@ import { Todo } from 'src/models/Todo';
 import { TodoService } from '../services/TodoService';
 
 @Component({
-    selector: 'app-input-field',
-    templateUrl: './input-field.component.html',
-    styleUrls: ['./input-field.component.css'],
+  selector: 'app-input-field',
+  templateUrl: './input-field.component.html',
+  styleUrls: ['./input-field.component.css'],
 })
-
 export class InputFieldComponent {
-    inputValue = new FormControl('');
+  inputValue = new FormControl('');
 
-    constructor(private todoService: TodoService) {}
-   
-    addTodo(event: any) {
-        if (!this.inputValue.value) {
-            return
-        }
-        const newTodo: Todo = { 
-            id: this.todoService.todo.length + 2,
-            todo: this.inputValue.value ,
-            isDone: false,
-            edit: false
+  constructor(private todoService: TodoService) {}
 
-        };
-
-        event.preventDefault();
-
-        this.todoService.addTodo(newTodo);
-        this.inputValue.reset('');
+  addTodo(event: any) {
+    if (!this.inputValue.value) {
+      return;
     }
+    const newTodo: Todo = {
+      id: this.todoService.todo.length + 2,
+      todo: this.inputValue.value,
+      isDone: false,
+      edit: false,
+    };
+
+    event.preventDefault();
+
+    this.todoService.addTodo(newTodo);
+    this.inputValue.reset('');
+  }
 }

@@ -2,41 +2,72 @@ import { Injectable } from '@angular/core';
 import { Todo } from 'src/models/Todo';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class TodoService {
+  todo: Todo[] = [
+    {
+      id: 1,
+      todo: 'Hello',
+      isDone: false,
+      edit: false,
+    },
+    {
+      id: 2,
+      todo: 'Hello',
+      isDone: false,
+      edit: false,
+    },
+    {
+      id: 3,
+      todo: 'Hello',
+      isDone: false,
+      edit: false,
+    },
+    {
+      id: 4,
+      todo: 'Hello',
+      isDone: false,
+      edit: false,
+    },
+  ];
 
-    todo: Todo[] = [
+  completedTodos: Todo[] = [
+    {
+      id: 5,
+      todo: 'Hello',
+      isDone: false,
+      edit: false,
+    },
+  ];
 
-    ];
+  addTodo(newTodo: Todo) {
+    this.todo.push(newTodo);
+  }
 
-    completedTodos: Todo[] = [
-   
-    ];
+  deleteTodo(todoId: number) {
+    this.todo = this.todo.filter((element) => element.id !== todoId);
+    this.completedTodos = this.completedTodos.filter(
+      (element) => element.id !== todoId
+    );
+  }
 
-    addTodo(newTodo: Todo) {
-        this.todo.push(newTodo);
+  editTodo(todoId: number, input: any) {
+    let selectedTodo =
+      this.todo.filter((element) => element.id === todoId)[0] ||
+      this.completedTodos.filter((element) => element.id === todoId)[0];
+    selectedTodo.edit = !selectedTodo.edit;
+    if (!input) {
+      return;
     }
 
-    deleteTodo(todoId: number) {
-        this.todo = this.todo.filter((element) => element.id !== todoId);
-        this.completedTodos = this.completedTodos.filter((element) => element.id !== todoId);
-    }
+    selectedTodo.todo = input;
+  }
 
-    editTodo(todoId: number, input: any) {
-      
-        let selectedTodo = this.todo.filter((element) => element.id === todoId)[0] || this.completedTodos.filter((element) => element.id === todoId)[0];
-        selectedTodo.edit = !selectedTodo.edit
-        if(!input) {
-            return
-        }
-        
-        selectedTodo.todo = input
-
-    }
-
-    checkTodo(todoId:number) {
-        let currentTodo = this.todo.filter((element) => element.id === todoId)[0] || this.completedTodos.filter((element) => element.id === todoId)[0];
-        currentTodo.isDone = !currentTodo.isDone
-    }
+  checkTodo(todoId: number) {
+    let currentTodo =
+      this.todo.filter((element) => element.id === todoId)[0] ||
+      this.completedTodos.filter((element) => element.id === todoId)[0];
+    currentTodo.isDone = !currentTodo.isDone;
+  }
 }

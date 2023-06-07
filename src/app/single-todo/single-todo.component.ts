@@ -5,28 +5,27 @@ import { TodoService } from '../services/TodoService';
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'app-single-todo',
-    templateUrl: './single-todo.component.html',
-    styleUrls: ['../app.component.css'],
+  selector: 'app-single-todo',
+  templateUrl: './single-todo.component.html',
+  styleUrls: ['../app.component.css'],
 })
-
 export class SingleTodoComponent {
-    @Input() Todos!: Todo[];
+  @Input() Todos!: Todo[];
 
-    todoValue = new FormControl('')
-    constructor(private todoService: TodoService) {}
+  todoValue = new FormControl('');
+  constructor(private todoService: TodoService) {}
 
-    editTodo(todoId: number) {
-        console.log(this.todoValue.value)
-        this.todoService.editTodo(todoId, this.todoValue.value)
-    }
+  editTodo(todoId: number) {
+    console.log(this.todoValue.value);
+    this.todoService.editTodo(todoId, this.todoValue.value);
+  }
 
-    deleteTodo(todoId: number) {
-        this.todoService.deleteTodo(todoId);
-    }
+  deleteTodo(todoId: number) {
+    this.todoService.deleteTodo(todoId);
+  }
 
-    checkTodo(todoId: number) {
-        this.todoService.checkTodo(todoId)
-    }
-
+  checkTodo(todoId: any) {
+    todoId.edit = false;
+    this.todoService.checkTodo(todoId.id);
+  }
 }
