@@ -18,17 +18,4 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router
   ) {}
-
-  loginWithGoogle(email?: string, password?: string) {
-    this.authService
-      .signInWithGoogle()
-      .then((res: any) => {
-        this.router.navigateByUrl('');
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
-  }
-
-  signupWithGoogle(username?: string, email?: string, password?: string) {}
 }
