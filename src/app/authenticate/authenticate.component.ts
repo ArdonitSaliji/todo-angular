@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppComponent } from '../app.component';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-authenticate',
@@ -26,8 +27,10 @@ export class AuthenticateComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private db: AngularFireDatabase
   ) {}
+
   invalidLogin() {
     console.log('execute');
     this.snackBar.open('Invalid credentials', '', {
@@ -64,7 +67,6 @@ export class AuthenticateComponent {
     const userData = Object.assign(this.loginForm.value, {
       email: this.loginForm.value.email,
     });
-
     this.authService
       .signWithEmailAndPassword(userData)
       .then((res: any) => {
@@ -82,7 +84,8 @@ export class AuthenticateComponent {
     const userData = Object.assign(this.signupForm.value, {
       email: this.signupForm.value.email,
     });
-    console.log(userData);
+
+    this.db.list<User>('/users');
     this.authService
       .regusterWithEmailAndPassword(userData)
       .then((res: any) => {
