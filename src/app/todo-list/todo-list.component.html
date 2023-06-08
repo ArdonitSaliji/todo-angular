@@ -1,27 +1,25 @@
 <div class="container">
-    
-    <div
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="todos"
-        [cdkDropListConnectedTo]="[doneList]"
-        (cdkDropListDropped)="drop($event)"
-        class="todos"
-    >
-        <span class="todos__heading">Active Tasks</span>
-        <app-single-todo [Todos]="todos" ></app-single-todo>
-    </div>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    (cdkDropListDropped)="drop($event)"
+    class="todos"
+  >
+    <span class="todos__heading">Active Tasks</span>
+    <app-single-todo [Todos]="todo"></app-single-todo>
+  </div>
 
-    <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="completedTodos"
-        [cdkDropListConnectedTo]="[todoList]"
-        (cdkDropListDropped)="drop($event)"
-        class="todos remove"
-    >
-        <span class="todos__heading">Completed Tasks</span>
-        <app-single-todo [Todos]="completedTodos"></app-single-todo>
-    </div>
-
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[todoList]"
+    (cdkDropListDropped)="drop($event)"
+    class="todos remove"
+  >
+    <span class="todos__heading">Completed Tasks</span>
+    <app-single-todo [Todos]="todo"></app-single-todo>
+  </div>
 </div>

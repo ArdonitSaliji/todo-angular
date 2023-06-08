@@ -11,14 +11,25 @@
       >Sign Up</label
     >
     <div class="login-form">
-      <div class="sign-in-htm">
+      <form [formGroup]="loginForm" class="sign-in-htm">
         <div class="group">
-          <label for="user" class="label">Username</label>
-          <input id="user" type="text" class="input" />
+          <label for="user" class="label">Email</label>
+          <input
+            formControlName="email"
+            id="username"
+            type="text"
+            class="input"
+          />
         </div>
         <div class="group">
           <label for="pass" class="label">Password</label>
-          <input id="pass" type="password" class="input" data-type="password" />
+          <input
+            formControlName="password"
+            id="pass"
+            type="password"
+            class="input"
+            data-type="password"
+          />
         </div>
         <div class="group">
           <input id="check" type="checkbox" class="check" checked />
@@ -38,36 +49,56 @@
         <div class="foot-lnk">
           <a href="#forgot">Forgot Password?</a>
         </div>
-        <button
-          class="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
-        >
-          <img
-            class="w-6 h-6"
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            loading="lazy"
-            alt="google logo"
-            height="15px"
-            width="15px"
-          />
-          <span>Login with Google</span>
-        </button>
-      </div>
-      <div class="sign-up-htm">
+        <div class="flex justify-center mt-5">
+          <button
+            (click)="loginWithGoogle()"
+            class="px-4 py-2 border text-white flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
+          >
+            <img
+              class="w-6 h-6"
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              loading="lazy"
+              alt="google logo"
+              height="15px"
+              width="15px"
+            />
+            <span>Login with Google</span>
+          </button>
+        </div>
+      </form>
+      <form [formGroup]="signupForm" class="sign-up-htm">
         <div class="group">
           <label for="user" class="label">Username</label>
-          <input id="user" type="text" class="input" />
+          <input
+            formControlName="username"
+            id="user"
+            type="text"
+            class="input"
+          />
         </div>
         <div class="group">
           <label for="pass" class="label">Password</label>
-          <input id="pass" type="password" class="input" data-type="password" />
+          <input
+            formControlName="password"
+            id="pass"
+            type="password"
+            class="input"
+            data-type="password"
+          />
         </div>
         <div class="group">
           <label for="pass" class="label">Repeat Password</label>
-          <input id="pass" type="password" class="input" data-type="password" />
+          <input
+            formControlName="confirmPassword"
+            id="pass2"
+            type="password"
+            class="input"
+            data-type="password"
+          />
         </div>
         <div class="group">
           <label for="pass" class="label">Email Address</label>
-          <input id="pass" type="text" class="input" />
+          <input formControlName="email" id="pass" type="text" class="input" />
         </div>
         <div class="group">
           <input
@@ -81,7 +112,7 @@
         <div class="foot-lnk">
           <label for="tab-1">Already Member?</label>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

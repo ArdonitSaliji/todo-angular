@@ -4,6 +4,8 @@ import { User } from 'src/models/User';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { TodoService } from './services/TodoService';
+import { Todo } from 'src/models/Todo';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,4 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Todo App Angular';
-
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router
-  ) {}
 }

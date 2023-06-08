@@ -13,7 +13,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment.development';
 import { HomeComponent } from './home/home.component';
-
+import { AuthenticateModule } from './authenticate/authenticate.module';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,8 @@ import { HomeComponent } from './home/home.component';
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AuthenticateModule,
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

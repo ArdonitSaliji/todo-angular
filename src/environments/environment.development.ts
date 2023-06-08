@@ -3,6 +3,8 @@ export const environment = {
   firebaseConfig: {
     apiKey: 'AIzaSyBpbkarXlnj47Bj-pi7eDiZoVEq4qVnIiM',
     authDomain: 'todoapp-1dfaa.firebaseapp.com',
+    databaseURL:
+      'https://todoapp-1dfaa-default-rtdb.europe-west1.firebasedatabase.app',
     projectId: 'todoapp-1dfaa',
     storageBucket: 'todoapp-1dfaa.appspot.com',
     messagingSenderId: '388028330129',

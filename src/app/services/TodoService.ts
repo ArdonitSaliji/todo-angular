@@ -1,73 +1,60 @@
 import { Injectable } from '@angular/core';
 import { Todo } from 'src/models/Todo';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  todo: Todo[] = [
-    {
-      id: 1,
-      todo: 'Hello',
-      isDone: false,
-      edit: false,
-    },
-    {
-      id: 2,
-      todo: 'Hello',
-      isDone: false,
-      edit: false,
-    },
-    {
-      id: 3,
-      todo: 'Hello',
-      isDone: false,
-      edit: false,
-    },
-    {
-      id: 4,
-      todo: 'Hello',
-      isDone: false,
-      edit: false,
-    },
-  ];
+  constructor(private db: AngularFireDatabase) {}
 
-  completedTodos: Todo[] = [
-    {
-      id: 5,
-      todo: 'Hello',
-      isDone: false,
-      edit: false,
-    },
-  ];
+  todo!: Todo[];
+
+  getAll(): Observable<Todo[]> {
+    return this.db
+      .list<Todo>('/todos')
+      .snapshotChanges()
+      .pipe(
+        map((x) =>
+          x.map((y: any) => ({
+            todoId: y.payload.key,
+            ...(y.payload.val() as Todo),
+          }))
+        )
+      );
+  }
+
+  setTodos(todo: Todo[]) {
+    this.todo = todo;
+  }
 
   addTodo(newTodo: Todo) {
-    this.todo.push(newTodo);
+    this.db.list<Todo>('/todos').push(newTodo);
   }
 
   deleteTodo(todoId: number) {
-    this.todo = this.todo.filter((element) => element.id !== todoId);
-    this.completedTodos = this.completedTodos.filter(
-      (element) => element.id !== todoId
-    );
+    this.db.object<Todo>('/todos/' + todoId).remove();
   }
 
   editTodo(todoId: number, input: any) {
-    let selectedTodo =
-      this.todo.filter((element) => element.id === todoId)[0] ||
-      this.completedTodos.filter((element) => element.id === todoId)[0];
-    selectedTodo.edit = !selectedTodo.edit;
+    let selectedTodo = this.todo.filter(
+      (element) => element.todoId === todoId
+    )[0];
+
+    selectedTodo.isEdit = !selectedTodo.isEdit;
     if (!input) {
       return;
     }
 
-    selectedTodo.todo = input;
+    selectedTodo.text = input;
   }
 
   checkTodo(todoId: number) {
-    let currentTodo =
-      this.todo.filter((element) => element.id === todoId)[0] ||
-      this.completedTodos.filter((element) => element.id === todoId)[0];
+    let currentTodo = this.todo.filter(
+      (element) => element.todoId === todoId
+    )[0];
     currentTodo.isDone = !currentTodo.isDone;
   }
 }

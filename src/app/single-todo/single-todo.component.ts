@@ -15,13 +15,16 @@ export class SingleTodoComponent {
   todoValue = new FormControl('');
   constructor(private todoService: TodoService) {}
 
-  editTodo(todoId: number) {
+  editTodo(todoId: any) {
     console.log(this.todoValue.value);
     this.todoService.editTodo(todoId, this.todoValue.value);
   }
 
-  deleteTodo(todoId: number) {
-    this.todoService.deleteTodo(todoId);
+  deleteTodo(todoId: any) {
+    console.log(todoId);
+    if (confirm('Are you sure?')) {
+      this.todoService.deleteTodo(todoId);
+    }
   }
 
   checkTodo(todoId: any) {

@@ -4,31 +4,31 @@
   <!-- <s class="todos__single--text"></s> -->
 
   <input
-    *ngIf="todo.edit"
+    *ngIf="todo.isEdit"
     class="todos__single--text"
-    value="{{ todo.todo }}"
-    [(ngModel)]="todo.todo"
-    name="todo {{ todo.id }}"
+    value="{{ todo.text }}"
+    [(ngModel)]="todo.text"
+    name="todo {{ todo.todoId }}"
   />
 
-  <s *ngIf="todo.isDone && !todo.edit" class="todos__single--text">{{
-    todo.todo
+  <s *ngIf="todo.isDone && !todo.isEdit" class="todos__single--text">{{
+    todo.text
   }}</s>
 
-  <span *ngIf="!todo.edit && !todo.isDone" class="todos__single--text">{{
-    todo.todo
+  <span *ngIf="!todo.isEdit && !todo.isDone" class="todos__single--text">{{
+    todo.text
   }}</span>
 
   <div>
     <span (click)="checkTodo(todo)" class="icon">
       <mat-icon>done</mat-icon></span
     >
-    <span (click)="editTodo(todo.id)" class="icon">
+    <span (click)="editTodo(todo.todoId)" class="icon">
       <mat-icon>edit</mat-icon>
     </span>
     <span class="icon"
       ><mat-icon
-        (click)="deleteTodo(todo.id)"
+        (click)="deleteTodo(todo.todoId)"
         aria-hidden="false"
         aria-label="Example home icon"
         fontIcon="delete"

@@ -19,10 +19,13 @@ export class InputFieldComponent {
       return;
     }
     const newTodo: Todo = {
-      id: this.todoService.todo.length + 2,
-      todo: this.inputValue.value,
+      todoId: this.todoService.todo.length + 2,
+      text: this.inputValue.value,
       isDone: false,
-      edit: false,
+      isEdit: false,
+      userId: 53,
+      created_at: '34343',
+      updated_at: '235',
     };
 
     event.preventDefault();

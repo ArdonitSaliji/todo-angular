@@ -10,14 +10,15 @@ import { Router } from '@angular/router';
 })
 export class AuthenticateComponent {
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
   });
 
   signupForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    confirmPassword: new FormControl('', [Validators.required]),
   });
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -26,7 +27,7 @@ export class AuthenticateComponent {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/home');
       })
       .catch((err: any) => {
         console.log(err);
@@ -35,8 +36,9 @@ export class AuthenticateComponent {
 
   loginWithEmailAndPassword() {
     const userData = Object.assign(this.loginForm.value, {
-      email: this.loginForm.value.username,
+      email: this.loginForm.value.email,
     });
+    console.log(userData);
 
     this.authService
       .signWithEmailAndPassword(userData)
@@ -49,19 +51,17 @@ export class AuthenticateComponent {
   }
 
   signupWithEmailAndPassword() {
-    const userData = Object.assign(this.loginForm.value, {
-      email: this.loginForm.value.username,
+    const userData = Object.assign(this.signupForm.value, {
+      email: this.signupForm.value.email,
     });
-
+    console.log(userData);
     this.authService
-      .signWithEmailAndPassword(userData)
+      .regusterWithEmailAndPassword(userData)
       .then((res: any) => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/');
       })
       .catch((err: any) => {
         console.log(err);
       });
   }
-
-  signupWithGoogle(username?: string, email?: string, password?: string) {}
 }
