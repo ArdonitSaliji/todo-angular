@@ -15,6 +15,9 @@ import { environment } from 'src/environments/environment.development';
 import { HomeComponent } from './home/home.component';
 import { AuthenticateModule } from './authenticate/authenticate.module';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFireAuthModule,
     AuthenticateModule,
     AngularFireDatabaseModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

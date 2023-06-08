@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-authenticate',
@@ -21,15 +23,39 @@ export class AuthenticateComponent {
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public snackBar: MatSnackBar
+  ) {}
+  invalidLogin() {
+    console.log('execute');
+    this.snackBar.open('Invalid credentials', '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 3000,
+    });
+  }
+
+  loginSuccessful() {
+    console.log('execute');
+    this.snackBar.open('Login Successfull!', '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 3000,
+    });
+  }
 
   loginWithGoogle() {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
+        console.log(res);
+        this.loginSuccessful();
         this.router.navigateByUrl('/home');
       })
       .catch((err: any) => {
+        this.invalidLogin();
         console.log(err);
       });
   }
@@ -38,14 +64,16 @@ export class AuthenticateComponent {
     const userData = Object.assign(this.loginForm.value, {
       email: this.loginForm.value.email,
     });
-    console.log(userData);
 
     this.authService
       .signWithEmailAndPassword(userData)
       .then((res: any) => {
+        console.log(res);
+        this.loginSuccessful();
         this.router.navigateByUrl('home');
       })
       .catch((err: any) => {
+        this.invalidLogin();
         console.log(err);
       });
   }

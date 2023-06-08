@@ -8,6 +8,24 @@ body {
   padding: 0;
 }
 
+.cdk-overlay-container {
+  position: absolute !important;
+  top: 0 !important;
+  z-index: 3;
+  left: 50%;
+  transform: translate(-50%);
+}
+.mdc-snackbar__surface.ng-tns-c3998535858-0,
+.mat-mdc-snack-bar-label,
+.mdc-snackbar__surface.ng-tns-c3998535858-0,
+.mdc-snackbar {
+  background-color: #fff !important;
+}
+
+.mat-snack-bar-container {
+  top: 0 !important;
+}
+
 app-root {
   display: flex;
   flex-direction: column;
