@@ -3,12 +3,16 @@ import { Todo } from 'src/models/Todo';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(
+    private db: AngularFireDatabase,
+    private authService: AuthService
+  ) {}
 
   todo!: Todo[];
 
@@ -20,6 +24,7 @@ export class TodoService {
         map((x) =>
           x.map((y: any) => ({
             todoId: y.payload.key,
+            userId: this.authService.getUserId(),
             ...(y.payload.val() as Todo),
           }))
         )

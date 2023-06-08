@@ -26,4 +26,7 @@ export class AuthService {
   getLoggedInUser(user: any) {
     this.loggedInUser = user;
   }
+  getUserId() {
+    return this.loggedInUser.user.uid;
+  }
 }
